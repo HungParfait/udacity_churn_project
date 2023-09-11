@@ -83,6 +83,7 @@ weighted avg       1.00      1.00      1.00      7088
 ## Test
 ```bash
 python churn_script_logging_and_tests.py
+```
 
 ## Code Quality
 Style Guide - Format your refactored code using PEP 8 – Style Guide. Running the command below can assist with formatting. To assist with meeting pep 8 guidelines, use autopep8 via the command line commands below:
