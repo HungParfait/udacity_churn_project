@@ -1,7 +1,5 @@
 # Predict Customer Churn with Clean Code
 
-[**Install**](#install) | [**Usage**](#usage) | [**Data**](#data) | [**EDA**](#eda) | [**Model**](#model) | [**Result**](#result) | [**Test**](#test) | [**Code Quality**](#code-quality) | [**Sequence Diagram**](#sequence-diagram)
-
 ## Project Description
 This is a project to implement best coding practices.
 ```
@@ -76,15 +74,15 @@ weighted avg       1.00      1.00      1.00      7088
 ```
 
 ### ROC Curve
-![lr_rf_roc_curves](../../projects/clean_code/images/results/lr_rf_roc_curves.png)
+![lr_rf_roc_curves](./images/results/curves.png)
 
 ## Feature Importance
-![cv_feature_importance](../../projects/clean_code/images/results/cv_feature_importance.png)
+![cv_feature_importance](./images/results/feature_importance.png)
 
 
 ## Test
 ```bash
-pytest --cov=src --cov-report=term-missing --cov-report=xml churn_script_logging_and_tests.py
+python churn_script_logging_and_tests.py
 
 ## Code Quality
 Style Guide - Format your refactored code using PEP 8 – Style Guide. Running the command below can assist with formatting. To assist with meeting pep 8 guidelines, use autopep8 via the command line commands below:

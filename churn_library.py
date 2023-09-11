@@ -190,7 +190,7 @@ def classification_report_image(y_train,
              None
     """
 
-    plt.rc('figure', figsize=(5, 5))
+    plt.rc('figure', figsize=(15, 15))
     # plt.text(0.01, 0.05, str(model.summary()), {'fontsize': 12}) old approach
     plt.text(0.01, 1.25, str('Random Forest Train'), {
              'fontsize': 10}, fontproperties='monospace')
@@ -204,7 +204,7 @@ def classification_report_image(y_train,
         RESULT_FOLDER, 'rf_classification_report.jpg'))
     plt.axis('off')
 
-    plt.rc('figure', figsize=(5, 5))
+    plt.rc('figure', figsize=(15, 15))
     plt.text(0.01, 1.25, str('Logistic Regression Train'),
              {'fontsize': 10}, fontproperties='monospace')
     plt.text(0.01, 0.05, str(classification_report(y_train, y_train_preds_lr)),
@@ -270,7 +270,7 @@ def train_models(x_train, x_test, y_train, y_test):
 
     param_grid = {
         'n_estimators': [200, 500],
-        'max_features': ['auto', 'sqrt'],
+        'max_features': ['log2', 'sqrt'],
         'max_depth': [4, 5, 100],
         'criterion': ['gini', 'entropy']
     }
@@ -298,7 +298,7 @@ def train_models(x_train, x_test, y_train, y_test):
 
     RocCurveDisplay.from_estimator(rfc_model, x_test, y_test, ax=ax, alpha=0.8)
     lrc_plot.plot(ax=ax, alpha=0.8)
-    plt.show()
+    plt.savefig(generate_destination('images/results', 'curves'))
 
     explainer = shap.TreeExplainer(rfc_model)
     shap_values = explainer.shap_values(x_test)

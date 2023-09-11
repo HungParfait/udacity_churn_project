@@ -4,34 +4,34 @@ import churn_library as cls
 
 logging.basicConfig(
     filename='./logs/churn_library.log',
-    level = logging.INFO,
+    level=logging.INFO,
     filemode='a',
     format='%(name)s - %(levelname)s - %(message)s')
 
 
 def test_import(import_data):
-	'''
-	test data import - this example is completed for you to assist with the other test functions
-	'''
-	try:
-		df = import_data("./data/bank_data.csv")
-		logging.info("Testing import_data: SUCCESS")
-	except FileNotFoundError as err:
-		logging.error("Testing import_eda: The file wasn't found")
-		raise err
+    """
+    test data import - this example is completed for you to assist with the other test functions
+    """
+    try:
+        df = import_data("./data/bank_data.csv")
+        logging.info("Testing import_data: SUCCESS")
+    except FileNotFoundError as err:
+        logging.error("Testing import_eda: The file wasn't found")
+        raise err
 
-	try:
-		assert df.shape[0] > 0
-		assert df.shape[1] > 0
-	except AssertionError as err:
-		logging.error("Testing import_data: The file doesn't appear to have rows and columns")
-		raise err
+    try:
+        assert df.shape[0] > 0
+        assert df.shape[1] > 0
+    except AssertionError as err:
+        logging.error("Testing import_data: The file doesn't appear to have rows and columns")
+        raise err
 
 
 def test_eda(perform_eda):
-    '''
+    """
     test perform_eda
-    '''
+    """
     try:
         df_test = cls.import_data('./data/bank_data.csv')
         perform_eda(df_test)
@@ -49,14 +49,14 @@ def test_eda(perform_eda):
 
 
 def test_perform_feature_engineering(perform_feature_engineering):
-    '''
+    """
     test perform_feature_engineering
-    '''
+    """
     df_test = cls.import_data('./data/bank_data.csv')
     cls.perform_eda(df_test)
 
     try:
-        x_train, x_test, y_train, y_test = perform_feature_engineering(df_test)
+        x_train, x_test, y_train, y_test = perform_feature_engineering(df_test, 'Churn')
         assert x_train.shape[0] and y_train.shape[0] > 0 \
             and x_test.shape[0] and y_test.shape[0] > 0
         logging.info("SUCCESS: Testing perform_feature_engineering")
@@ -67,14 +67,14 @@ def test_perform_feature_engineering(perform_feature_engineering):
 
 
 def test_train_models(train_models):
-    '''
+    """
     test train_models
-    '''
+    """
     df_test = cls.import_data('./data/bank_data.csv')
     cls.perform_eda(df_test)
 
     x_train, x_test, y_train, y_test = cls.perform_feature_engineering(
-        df=df_test)
+        df=df_test, response='Churn')
 
     try:
         train_models(x_train, x_test, y_train, y_test)
