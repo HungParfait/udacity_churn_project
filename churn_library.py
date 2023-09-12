@@ -1,8 +1,10 @@
-# library doc string
 """
-    This is a library for calculate churn rate.
+    Description: This is a library for calculate churn rate.
+    Name: churn-library
+    Author: HungND
+    Creation Date: 12/9/2023
 """
-# import libraries
+
 import os
 import logging
 import joblib
